@@ -10,7 +10,7 @@ import UserModel from "../models/userModel";
 import { IUser, IUserQuery } from "../types/user";
 
 export class UserController {
-  public async getLeaves(req: Request, res: Response): Promise<void> {
+  public async getUsers(req: Request, res: Response): Promise<void> {
     try {
       const [skip, limit] = generatePaging(req);
       const query: IUserQuery = {};
@@ -33,8 +33,11 @@ export class UserController {
 
   public async addUser(req: Request, res: Response): Promise<void> {
     try {
-      const data: IUser = req.body;
+      const data: IUser = { ...req.body, test: 123 };
 
+      console.log(req.body);
+
+      console.log(data);
       const savedLedger: IUser = await new UserModel(data).save();
 
       return createdResponse(savedLedger, res);

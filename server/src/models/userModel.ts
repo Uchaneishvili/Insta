@@ -1,13 +1,14 @@
-import { model, Schema } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 import { IType, IUser } from "../types/user";
 
-const userSchema = new Schema(
+const schema = new Schema(
   {
     image: {
       type: String,
     },
     type: {
-      type: IType,
+      type: Number,
+      enum: [IType.USER, IType.TAG],
     },
     userName: {
       type: String,
@@ -27,5 +28,5 @@ const userSchema = new Schema(
   }
 );
 
-const UserModel = model<IUser>("user", userSchema);
+const UserModel = model<IUser>("user", schema);
 export default UserModel;

@@ -97,7 +97,6 @@ export function handleError(
     status: "FAILURE",
     message: message || "MongoDB error",
     err,
-    errorMessage: err["message"],
   };
   Logger.error(error);
   res.status(ResponseStatusCodes.InternalServerError).json(error);
