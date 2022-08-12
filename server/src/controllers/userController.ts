@@ -35,9 +35,6 @@ export class UserController {
     try {
       const data: IUser = { ...req.body, test: 123 };
 
-      console.log(req.body);
-
-      console.log(data);
       const savedLedger: IUser = await new UserModel(data).save();
 
       return createdResponse(savedLedger, res);

@@ -51,6 +51,8 @@ export class UserRoutes {
      *               enum: [0, 1]
      *             userName:
      *               type: string
+     *             name:
+     *               type: string
      *             mediaCount:
      *               type: number
      *     responses:
@@ -67,21 +69,30 @@ export class UserRoutes {
      * paths:
      *   /users/{id}:
      *     put:
-     *       summary: Updates a new user.
+     *       description: Update a new user.
      *       tags: [Users]
-     *       consumes:
+     *       produces:
      *         - application/json
      *       parameters:
      *         - in: path
      *           name: id
-     *           schema:
-     *             type: string
+     *           description: ID of the user
      *           required: true
-     *       requestBody:
-     *         security:
-     *           - bearerAuth: []
-     *         content:
-     *           application/x-www-form-urlencoded:
+     *         - in: body
+     *           schema:
+     *             type: object
+     *             properties:
+     *               image:
+     *                 type: string
+     *               type:
+     *                 type: number
+     *                 enum: [0,1]
+     *               userName:
+     *                 type: string
+     *               name:
+     *                 type: string
+     *               mediaCount:
+     *                 type: number
      *       responses:
      *         201:
      *           description: Created

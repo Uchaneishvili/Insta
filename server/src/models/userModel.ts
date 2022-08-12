@@ -13,6 +13,9 @@ const schema = new Schema(
     userName: {
       type: String,
     },
+    name: {
+      type: String,
+    },
     mediaCount: {
       type: Number,
     },

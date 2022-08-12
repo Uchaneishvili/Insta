@@ -7,9 +7,11 @@ export interface IUser {
   _id: string;
   image: string;
   type: IType;
-  userName: string;
+  userName?: string;
+  name?: string;
   mediaCount: number;
 }
 export interface IUserQuery {
   userName?: string;
+  name?: string;
 }
