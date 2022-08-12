@@ -31,9 +31,28 @@ export class UserController {
     }
   }
 
+  public async login(req: Request, res: Response): Promise<void> {
+    try {
+      console.log(req.body);
+      const isFound = await UserModel.find({
+        userName: req.body.username,
+        password: req.body.password,
+      });
+
+      let success = false;
+      if (isFound) {
+        success = true;
+      }
+
+      return successResponse({ success: success }, res);
+    } catch (error) {
+      return handleError(error, res, "Error while searching users.");
+    }
+  }
+
   public async addUser(req: Request, res: Response): Promise<void> {
     try {
-      const data: IUser = { ...req.body, test: 123 };
+      const data: IUser = { ...req.body };
 
       const savedLedger: IUser = await new UserModel(data).save();
 

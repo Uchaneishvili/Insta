@@ -31,6 +31,35 @@ export class UserRoutes {
 
     /**
      * @swagger
+     *
+     * /users/login:
+     *   get:
+     *     summary: login
+     *     tags: [Users]
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - in: body
+     *         name: user
+     *         required: true
+     *         type: object
+     *         schema:
+     *           type: object
+     *           properties:
+     *             userName:
+     *               type: string
+     *             password:
+     *               type: string
+     *     responses:
+     *       200:
+     *         description: user can be logged in
+     */
+    router.get("/login", (req: Request, res: Response) => {
+      return this.userController.login(req, res);
+    });
+
+    /**
+     * @swagger
      * /users:
      *   post:
      *     description: create user

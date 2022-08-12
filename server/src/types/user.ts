@@ -7,7 +7,8 @@ export interface IUser {
   _id: string;
   image: string;
   type: IType;
-  userName?: string;
+  userName: string;
+  password: string;
   name?: string;
   mediaCount: number;
 }
