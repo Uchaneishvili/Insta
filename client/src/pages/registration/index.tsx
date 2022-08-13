@@ -1,12 +1,16 @@
-import { Alert, Button, Form, Input } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Alert, Button, Form, Input, InputNumber, Select } from "antd";
+import { UserOutlined, LockOutlined, TagOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import "./login.css";
+import "./registration.css";
+import axios from "axios";
+import { IType } from "../../types/users";
 import { useNavigate } from "react-router-dom";
-const Login = () => {
+
+const Registration = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
+  const { Option } = Select;
   const navigate = useNavigate();
 
   const login = async () => {
@@ -14,7 +18,7 @@ const Login = () => {
       setLoading(true);
       const data = await form.validateFields();
       console.log(data);
-      await fetch("http://localhost:3001/users/login", data);
+      await axios.post("http://localhost:3001/users", data);
     } catch (err: any) {
       setErrorMsg("დაფიქსირდა შეცდომა.");
       setLoading(false);
@@ -25,7 +29,7 @@ const Login = () => {
     <div className="login-warp">
       <Form form={form} name="normal_login" className="login-form">
         <div className="text-center mb-4">
-          <h6 className="login-header-txt">ავტორიზაცია</h6>
+          <h6 className="login-header-txt">რეგისტრაცია</h6>
         </div>
         {errorMsg && (
           <Alert
@@ -67,6 +71,40 @@ const Login = () => {
           />
         </Form.Item>
 
+        <Form.Item
+          name="type"
+          rules={[
+            {
+              required: true,
+              message: "ტიპის მითითება სავალდებულოა",
+            },
+          ]}
+        >
+          <Select
+            size="large"
+            placeholder="Tag / User"
+            style={{ width: "100%" }}
+          >
+            <Option value={IType.TAG}>Tag</Option>
+            <Option value={IType.USER}>User</Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
+          name="mediaCount"
+          rules={[
+            {
+              required: true,
+              message: "ველის შევსება სავალდებულოა",
+            },
+          ]}
+        >
+          <InputNumber
+            min={0}
+            size="large"
+            placeholder="The number of media"
+            style={{ width: "100%" }}
+          />
+        </Form.Item>
         <Form.Item>
           <Button
             type="primary"
@@ -76,17 +114,17 @@ const Login = () => {
             className="login-form-button"
             loading={loading}
           >
-            ავტორიზაცია
+            რეგისტრაცია
           </Button>
 
           <div className="text-center pt-2">
             <Button
               className="footer-button"
               onClick={() => {
-                navigate(`/register`);
+                navigate(`/login`);
               }}
             >
-              რეგისტრაცია
+              ავტორიზაცია
             </Button>
           </div>
         </Form.Item>
@@ -95,4 +133,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;

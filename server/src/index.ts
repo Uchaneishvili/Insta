@@ -50,6 +50,7 @@ const options = {
 };
 
 router.use(cors(options));
+app.use(cors());
 
 const userRoutes = new UserRoutes();
 app.use("/users", userRoutes.route());
