@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Registration = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [type, setType] = useState(0);
   const [form] = Form.useForm();
   const { Option } = Select;
   const navigate = useNavigate();
@@ -84,27 +85,30 @@ const Registration = () => {
             size="large"
             placeholder="Tag / User"
             style={{ width: "100%" }}
+            onSelect={(val: number) => setType(val)}
           >
-            <Option value={IType.TAG}>Tag</Option>
             <Option value={IType.USER}>User</Option>
+            <Option value={IType.TAG}>Tag</Option>
           </Select>
         </Form.Item>
-        <Form.Item
-          name="mediaCount"
-          rules={[
-            {
-              required: true,
-              message: "ველის შევსება სავალდებულოა",
-            },
-          ]}
-        >
-          <InputNumber
-            min={0}
-            size="large"
-            placeholder="The number of media"
-            style={{ width: "100%" }}
-          />
-        </Form.Item>
+        {type === 1 && (
+          <Form.Item
+            name="mediaCount"
+            rules={[
+              {
+                required: true,
+                message: "ველის შევსება სავალდებულოა",
+              },
+            ]}
+          >
+            <InputNumber
+              min={0}
+              size="large"
+              placeholder="The number of media"
+              style={{ width: "100%" }}
+            />
+          </Form.Item>
+        )}
         <Form.Item>
           <Button
             type="primary"
