@@ -1,0 +1,36 @@
+.header {
+  padding: 0;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  height: 72px;
+  z-index: 9;
+  align-items: center;
+  background-color: #fff;
+}
+
+.logo {
+  background: #001529;
+  padding: 16px;
+  color: hsla(0, 0%, 100%, 0.65);
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  height: 63px;
+  border-bottom: 1px solid;
+}
+
+.breadCrumb {
+  margin: 10px 25px;
+  background: #fff;
+  padding: 5px 10px;
+}
+
+.site-page-header .ant-page-header-heading-title {
+  font-size: 14px;
+}
+.page-wrapper {
+  background: #ffffff;
+  padding: 25px 16px;
+  margin: 0 25px 25px 25px;
+}

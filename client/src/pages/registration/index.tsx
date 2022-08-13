@@ -1,5 +1,5 @@
 import { Alert, Button, Form, Input, InputNumber, Select } from "antd";
-import { UserOutlined, LockOutlined, TagOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import "./registration.css";
 import axios from "axios";
