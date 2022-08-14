@@ -17,7 +17,6 @@ root.render(
   <Router>
     <Spin spinning={false} tip="Loading...">
       <div className="App">
-        {}
         {window.location.pathname === "/login" ? (
           getLoginLayout()
         ) : window.location.pathname === "/register" ? (

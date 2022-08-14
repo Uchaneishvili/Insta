@@ -31,6 +31,16 @@ export class UserController {
     }
   }
 
+  public async getUserInfo(req: Request, res: Response): Promise<void> {
+    try {
+      const user = await UserModel.findById({ _id: req.params.id });
+
+      return successResponse(user, res);
+    } catch (error) {
+      return handleError(error, res, "Error while searching users.");
+    }
+  }
+
   public async login(req: Request, res: Response): Promise<void> {
     try {
       console.log(req.body);
@@ -52,6 +62,7 @@ export class UserController {
 
   public async addUser(req: Request, res: Response): Promise<void> {
     try {
+      console.log(req.file);
       const data: IUser = { ...req.body };
 
       const savedLedger: IUser = await new UserModel(data).save();

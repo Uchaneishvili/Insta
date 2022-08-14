@@ -1,6 +1,8 @@
 import { Router, Request, Response } from "express";
 import { UserController } from "../controllers/userController";
+import multer from "multer";
 
+const upload = multer();
 export class UserRoutes {
   private userController: UserController = new UserController();
   public route(): Router {
@@ -29,6 +31,26 @@ export class UserRoutes {
       return this.userController.getUsers(req, res);
     });
 
+    /**
+     * @swagger
+     *
+     * /users/{id}:
+     *   get:
+     *     summary: get user info
+     *     tags: [Users]
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *     responses:
+     *       200:
+     *         description: get user info
+     */
+    router.get("/:id", (req: Request, res: Response) => {
+      return this.userController.getUserInfo(req, res);
+    });
     /**
      * @swagger
      *
@@ -88,7 +110,7 @@ export class UserRoutes {
      *       200:
      *         description: create user
      */
-    router.post("/", (req: Request, res: Response) => {
+    router.post("/", upload.single("avatar"), (req: Request, res: Response) => {
       return this.userController.addUser(req, res);
     });
 

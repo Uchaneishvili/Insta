@@ -13,6 +13,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import Bread from "../../components/Bread";
 import axios from "axios";
 import { IType } from "../../types/users";
+import { Link } from "react-router-dom";
 
 const User: React.FC = () => {
   const [dataIndex, setDataIndex] = useState();
@@ -77,6 +78,11 @@ const User: React.FC = () => {
       render: (id: string) => {
         return (
           <Space>
+            <Button type="primary" size="small">
+              <Link to={`/users/${id}`}>
+                <EditOutlined />
+              </Link>
+            </Button>
             <Popconfirm
               title={"ნამდვილად გსურთ ჩანაწერის წაშლა ?"}
               okText={"დადასტურება"}
@@ -96,14 +102,10 @@ const User: React.FC = () => {
                 );
               }}
             >
-              <Button
-                danger
-                type="primary"
-                icon={<DeleteOutlined />}
-                size="small"
-              />
+              <Button danger type="primary" size="small">
+                <DeleteOutlined />
+              </Button>
             </Popconfirm>
-            <Button type="primary" icon={<EditOutlined />} size="small" />
           </Space>
         );
       },

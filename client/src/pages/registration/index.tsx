@@ -41,6 +41,7 @@ const Registration = () => {
             showIcon
           />
         )}
+
         <Form.Item
           name="userName"
           rules={[
